@@ -24,11 +24,11 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "py-3 bg-white/10 backdrop-blur-lg border-b border-white/10"
+          ? "py-3 bg-black/40 backdrop-blur-lg border-b border-white/10"
           : "py-5"
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
           <span className="text-2xl font-bold bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple text-transparent bg-clip-text">
             Scryptex
@@ -37,23 +37,23 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <div className="flex gap-6">
-            <a href="#features" className="hover:text-scryptex-lightpurple transition-colors">
+          <div className="flex gap-8">
+            <a href="#features" className="hover:text-scryptex-lightpurple transition-colors text-sm">
               Features
             </a>
-            <a href="#how-it-works" className="hover:text-scryptex-lightpurple transition-colors">
+            <a href="#how-it-works" className="hover:text-scryptex-lightpurple transition-colors text-sm">
               How It Works
             </a>
-            <a href="#benefits" className="hover:text-scryptex-lightpurple transition-colors">
+            <a href="#benefits" className="hover:text-scryptex-lightpurple transition-colors text-sm">
               Benefits
             </a>
-            <a href="#contact" className="hover:text-scryptex-lightpurple transition-colors">
+            <a href="#contact" className="hover:text-scryptex-lightpurple transition-colors text-sm">
               Contact
             </a>
           </div>
           <Button
             asChild
-            className="bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity"
+            className="bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(168,85,247,0.3)]"
           >
             <Link to="/dashboard">Launch App</Link>
           </Button>
@@ -74,18 +74,34 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-lg border-b border-white/10">
-          <div className="container mx-auto py-4 flex flex-col gap-4">
-            <a href="#features" className="py-2 hover:text-scryptex-lightpurple transition-colors">
+        <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-b border-white/10">
+          <div className="container mx-auto py-6 flex flex-col gap-6">
+            <a 
+              href="#features" 
+              className="py-2 hover:text-scryptex-lightpurple transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Features
             </a>
-            <a href="#how-it-works" className="py-2 hover:text-scryptex-lightpurple transition-colors">
+            <a 
+              href="#how-it-works" 
+              className="py-2 hover:text-scryptex-lightpurple transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               How It Works
             </a>
-            <a href="#benefits" className="py-2 hover:text-scryptex-lightpurple transition-colors">
+            <a 
+              href="#benefits" 
+              className="py-2 hover:text-scryptex-lightpurple transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Benefits
             </a>
-            <a href="#contact" className="py-2 hover:text-scryptex-lightpurple transition-colors">
+            <a 
+              href="#contact" 
+              className="py-2 hover:text-scryptex-lightpurple transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Contact
             </a>
             <Button

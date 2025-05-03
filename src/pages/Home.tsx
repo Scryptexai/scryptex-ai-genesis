@@ -4,6 +4,8 @@ import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import AiBenefitsSection from "@/components/AiBenefitsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
@@ -36,6 +38,8 @@ const Home = () => {
       <FeaturesSection />
       <HowItWorksSection />
       <AiBenefitsSection />
+      <TestimonialsSection />
+      <CtaSection />
       <Footer />
     </div>
   );
