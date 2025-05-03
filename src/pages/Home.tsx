@@ -8,7 +8,6 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 
 const Home = () => {
   // Implement smooth scrolling for anchor links
@@ -33,12 +32,7 @@ const Home = () => {
   }, []);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="bg-gradient-to-br from-black via-[#13052b] to-black min-h-screen text-white overflow-x-hidden"
-    >
+    <div className="bg-gradient-to-br from-black via-[#13052b] to-black min-h-screen text-white overflow-x-hidden">
       <Navbar />
       <HeroSection />
       <FeaturesSection />
@@ -47,7 +41,7 @@ const Home = () => {
       <TestimonialsSection />
       <CtaSection />
       <Footer />
-    </motion.div>
+    </div>
   );
 };
 
