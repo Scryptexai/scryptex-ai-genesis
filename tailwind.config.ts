@@ -68,7 +68,7 @@ export default {
 					darkpurple: '#581c87',
 					lightpurple: '#a855f7',
 					softpurple: '#e9d5ff',
-					background: '#0f0f0f'
+					background: '#0D0D0D'
 				},
 			},
 			borderRadius: {
@@ -108,6 +108,18 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' }
+				},
+				'slide-out': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 15px rgba(168,85,247,0.5)' },
+					'50%': { boxShadow: '0 0 30px rgba(168,85,247,0.8)' }
 				}
 			},
 			animation: {
@@ -116,11 +128,17 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'pulse-slow': 'pulse-slow 3s infinite',
-				'float': 'float 6s ease-in-out infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'slide-in': 'slide-in 0.5s ease-out',
+				'slide-out': 'slide-out 0.5s ease-out',
+				'glow': 'glow 2s infinite'
 			},
 			fontFamily: {
 				'inter': ['Inter', 'sans-serif'],
 			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

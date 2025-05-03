@@ -94,6 +94,26 @@
 
   body {
     @apply bg-background text-foreground font-inter;
+    scroll-behavior: smooth;
+  }
+  
+  /* Improved scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #13052b;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #7e22ce;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a855f7;
   }
 }
 
@@ -122,4 +142,47 @@
   border-radius: calc(theme('borderRadius.lg') - 1px);
   background: theme('colors.background');
   height: 100%;
+}
+
+/* Text gradient styles */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple;
+}
+
+/* Animation utility classes */
+.hover-scale {
+  @apply transition-transform hover:scale-105;
+}
+
+.hover-glow {
+  @apply transition-shadow hover:shadow-[0_0_15px_rgba(168,85,247,0.5)];
+}
+
+.neo-card {
+  @apply bg-black/50 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+/* Fluid typography helper */
+@layer utilities {
+  .text-fluid-2xl {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .text-fluid-3xl {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  .text-fluid-4xl {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
 }
