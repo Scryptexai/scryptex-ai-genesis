@@ -23,4 +23,4 @@ interface User {
 
 // Schema definition would go here in a real implementation
 
-export { User };
+export type { User };

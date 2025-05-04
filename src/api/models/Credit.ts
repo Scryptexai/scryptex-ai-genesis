@@ -31,4 +31,4 @@ interface CreditTransaction {
 
 // Schema definition would go here in a real implementation
 
-export { CreditTransaction, TransactionType, TransactionPurpose };
+export type { CreditTransaction, TransactionType, TransactionPurpose };

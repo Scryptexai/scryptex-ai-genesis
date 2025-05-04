@@ -36,4 +36,4 @@ interface Project {
 
 // Schema definition would go here in a real implementation
 
-export { Project, ProjectCategory, TrendDirection, RiskLevel };
+export type { Project, ProjectCategory, TrendDirection, RiskLevel };

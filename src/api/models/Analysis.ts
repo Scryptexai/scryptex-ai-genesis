@@ -6,96 +6,104 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-type AnalysisType = "about" | "roadmap" | "tokenomics" | "team" | "sentiment";
+type AnalysisStatus = "pending" | "processing" | "completed" | "error";
+type SentimentScore = -2 | -1 | 0 | 1 | 2; // -2 very negative, 2 very positive
+type ProjectStrength = "strong" | "moderate" | "weak" | "unknown";
+type TrustLevel = "high" | "medium" | "low" | "unknown";
+type InvestmentRisk = "low" | "medium" | "high" | "very-high";
+type TokenUtility = "utility" | "governance" | "security" | "payment" | "store-of-value" | "multi-purpose" | "unknown";
+type TeamExpertise = "expert" | "experienced" | "novice" | "unknown";
 
 interface Analysis {
   id: string;
-  userId: string;
   projectId: string;
-  type: AnalysisType;
-  creditsUsed: number;
-  date: Date;
-  result: Record<string, any>; // Varies based on analysis type
-  aiConfidence: number;
-}
-
-interface AboutAnalysis extends Analysis {
-  result: {
-    summary: string;
-    keyPoints: string[];
-    sentiment: number;
-    concerns: string[];
+  userId: string;
+  createdAt: Date;
+  completedAt?: Date;
+  status: AnalysisStatus;
+  
+  // General information
+  projectName: string;
+  projectURL: string;
+  projectDescription?: string;
+  
+  // Analysis results
+  sentiment?: {
+    overall: SentimentScore;
+    community: SentimentScore;
+    developers: SentimentScore;
+    investors: SentimentScore;
   };
-}
-
-interface RoadmapAnalysis extends Analysis {
-  result: {
-    milestones: Array<{
-      title: string;
-      date: string;
-      analysis: string;
-      feasibility: number;
-    }>;
-    completionRisk: number;
-    timeline: string;
+  
+  roadmap?: {
+    clarity: ProjectStrength;
+    feasibility: ProjectStrength;
+    milestones: string[];
+    completedMilestones: string[];
+    timeline: {
+      past: {
+        milestone: string;
+        date: Date;
+        completed: boolean;
+      }[];
+      upcoming: {
+        milestone: string;
+        estimatedDate: Date;
+      }[];
+    };
   };
-}
-
-interface TokenomicsAnalysis extends Analysis {
-  result: {
-    distribution: Array<{
+  
+  tokenomics?: {
+    tokenSymbol?: string;
+    totalSupply?: number;
+    circulatingSupply?: number;
+    distribution: {
       category: string;
       percentage: number;
-      analysis: string;
-    }>;
-    supplyModel: string;
-    tokenUtility: string;
-    concerns: string[];
-    positives: string[];
+    }[];
+    utility: TokenUtility[];
+    vesting?: {
+      team: string;
+      investors: string;
+      community: string;
+    };
+    inflationRate?: number;
   };
-}
-
-interface TeamAnalysis extends Analysis {
-  result: {
-    teamMembers: Array<{
+  
+  team?: {
+    size?: number;
+    public?: boolean;
+    expertise: TeamExpertise;
+    keyMembers: {
       name: string;
       role: string;
       background: string;
-      linkedProjects: string[];
-      riskFactors: string[];
-      confidence: number;
-    }>;
-    overallAssessment: string;
-    transparencyScore: number;
-    concerns: string[];
+      linkedIn?: string;
+      twitter?: string;
+    }[];
+    previousProjects?: string[];
   };
-}
-
-interface SentimentAnalysis extends Analysis {
-  result: {
-    overallSentiment: number;
-    communityMetrics: {
-      twitter?: Record<string, any>;
-      discord?: Record<string, any>;
-      telegram?: Record<string, any>;
-      github?: Record<string, any>;
-    };
-    marketAnalysis: {
-      competitivePosition: string;
-      uniqueSellingPoints: string[];
-      marketPotential: number;
-    };
+  
+  risk?: {
+    overall: InvestmentRisk;
+    technical: InvestmentRisk;
+    market: InvestmentRisk;
+    regulatory: InvestmentRisk;
+    notes?: string[];
   };
+  
+  recommendation?: string;
 }
 
 // Schema definition would go here in a real implementation
 
-export { 
+export type { 
   Analysis, 
-  AnalysisType, 
-  AboutAnalysis, 
-  RoadmapAnalysis, 
-  TokenomicsAnalysis, 
-  TeamAnalysis, 
-  SentimentAnalysis 
+  AnalysisStatus, 
+  SentimentScore, 
+  ProjectStrength, 
+  TrustLevel, 
+  InvestmentRisk, 
+  TokenUtility, 
+  TeamExpertise 
 };
