@@ -2,12 +2,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Outlet } from "react-router-dom";
+import { User } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import BackgroundAnimation from "@/components/dashboard/BackgroundAnimation";
+import AuthModal from "@/components/auth/AuthModal";
+import TokenCreditDisplay from "@/components/credits/TokenCreditDisplay";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Close sidebar on mobile by default
   useEffect(() => {
@@ -51,6 +57,25 @@ const Dashboard = () => {
         duration: 0.3
       }
     }
+  };
+
+  const handleAuthModalClose = () => {
+    setIsAuthModalOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    setIsAuthModalOpen(true);
+  };
+
+  // Mock login function - in a real app this would involve API calls
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    setIsAuthModalOpen(false);
+  };
+
+  // Mock logout function
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
 
   return (
@@ -98,6 +123,34 @@ const Dashboard = () => {
               exit="exit"
               className={`flex-1 transition-all duration-300 p-4 md:p-8 ${isSidebarOpen ? 'md:ml-64' : 'ml-0'}`}
             >
+              {/* Header with auth and token display */}
+              <div className="flex justify-end items-center mb-6 gap-3">
+                {isLoggedIn ? (
+                  <>
+                    <TokenCreditDisplay />
+                    <motion.div 
+                      className="flex items-center gap-2 bg-purple-500/10 hover:bg-purple-500/20 rounded-full py-1 px-3 cursor-pointer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={handleLogout}
+                    >
+                      <span className="text-sm hidden sm:inline">John Doe</span>
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                        <User size={14} />
+                      </div>
+                    </motion.div>
+                  </>
+                ) : (
+                  <Button 
+                    onClick={handleLoginClick}
+                    className="bg-gradient-to-r from-purple-600 to-blue-500 hover:opacity-90"
+                    size="sm"
+                  >
+                    Log In / Sign Up
+                  </Button>
+                )}
+              </div>
+
               <div className="max-w-7xl mx-auto">
                 <Outlet />
               </div>
@@ -105,6 +158,11 @@ const Dashboard = () => {
           )}
         </AnimatePresence>
       </div>
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={handleAuthModalClose}
+      />
     </div>
   );
 };
