@@ -7,7 +7,8 @@
  */
 
 // Using import type to avoid requiring the express module at runtime
-import type { Router } from 'express';
+// Import only the type, not the actual module
+import type { Router as RouterType } from 'express';
 import { 
   getReferralInfo,
   applyReferralCode,
@@ -16,7 +17,7 @@ import {
 
 // Mock router setup - this code is never executed
 /*
-const router: Router = Router();
+const router: RouterType = Router();
 
 // All routes below would use authentication middleware
 router.use(authenticate);
