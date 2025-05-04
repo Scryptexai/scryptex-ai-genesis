@@ -1,8 +1,8 @@
 
 import { motion } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { ButtonHTMLAttributes, ReactNode, useState } from "react";
 
-interface ActionButtonProps {
+interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   icon?: ReactNode;
   onClick?: () => void;
@@ -18,6 +18,7 @@ const ActionButton = ({
   variant = "primary",
   className = "",
   loading = false,
+  ...props
 }: ActionButtonProps) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -38,6 +39,7 @@ const ActionButton = ({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       disabled={loading}
+      {...props}
     >
       {loading ? (
         <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
