@@ -6,33 +6,19 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-// Using import type to avoid requiring the express module at runtime
-// Import only the type, not the actual module
-import type { Router as RouterType } from 'express';
+// Import controllers only - no express dependencies
 import { 
   getReferralInfo,
   applyReferralCode,
   generateReferralCode
 } from '../controllers/referralController';
 
-// Mock router setup - this code is never executed
+// Mock route structure (commented out)
 /*
-const router: RouterType = Router();
-
-// All routes below would use authentication middleware
-router.use(authenticate);
-
-// Get referral info for logged in user
-router.get('/', getReferralInfo);
-
-// Apply a referral code
-router.post('/apply', applyReferralCode);
-
-// Generate new referral code
-router.post('/generate', generateReferralCode);
-
-// Export the router 
-export default router;
+Routes setup would be:
+GET / - getReferralInfo (auth required)
+POST /apply - applyReferralCode (auth required)
+POST /generate - generateReferralCode (auth required)
 */
 
 // Export the controllers to document the API structure

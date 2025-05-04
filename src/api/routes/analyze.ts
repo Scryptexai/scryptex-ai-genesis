@@ -6,9 +6,7 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-// Using import type to avoid requiring the express module at runtime
-// Import only the type, not the actual module
-import type { Router as RouterType } from 'express';
+// Import controllers only - no express dependencies
 import { 
   analyzeProject, 
   getAnalysisHistory, 
@@ -16,27 +14,13 @@ import {
   getAnalysisById
 } from '../controllers/analyzeController';
 
-// Mock router setup - this code is never executed
+// Mock route structure (commented out)
 /*
-const router: RouterType = Router();
-
-// All routes below would use authentication middleware
-router.use(authenticate);
-
-// Analyze a new project
-router.post('/', analyzeProject);
-
-// Get analysis history for user
-router.get('/history', getAnalysisHistory);
-
-// Get top analyzed projects
-router.get('/top', getTopAnalyzedProjects);
-
-// Get specific analysis by ID
-router.get('/:id', getAnalysisById);
-
-// Export the router 
-export default router;
+Routes setup would be:
+POST / - analyzeProject (auth required)
+GET /history - getAnalysisHistory (auth required)
+GET /top - getTopAnalyzedProjects (auth required)
+GET /:id - getAnalysisById (auth required)
 */
 
 // Export the controllers to document the API structure

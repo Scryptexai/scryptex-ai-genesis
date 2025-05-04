@@ -6,9 +6,7 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-// Using import type to avoid requiring the express module at runtime
-// Import only the type, not the actual module
-import type { Router as RouterType } from 'express';
+// Import controllers only - no express dependencies
 import { 
   getAllAirdrops,
   getAirdropsByStatus,
@@ -16,21 +14,13 @@ import {
   saveAirdrop
 } from '../controllers/airdropController';
 
-// Mock router setup - this code is never executed
+// Mock route structure (commented out)
 /*
-const router: RouterType = Router();
-
-// Public routes
-router.get('/', getAllAirdrops);
-router.get('/status/:status', getAirdropsByStatus);
-
-// Protected routes - would require authentication
-router.use(authenticate);
-router.post('/', submitAirdrop);
-router.post('/:id/save', saveAirdrop);
-
-// Export the router 
-export default router;
+Routes setup would be:
+GET / - getAllAirdrops
+GET /status/:status - getAirdropsByStatus
+POST / - submitAirdrop (auth required)
+POST /:id/save - saveAirdrop (auth required)
 */
 
 // Export the controllers to document the API structure
