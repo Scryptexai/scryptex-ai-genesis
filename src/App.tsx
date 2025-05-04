@@ -8,6 +8,15 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Overview from "./pages/dashboard/Overview";
+import AiResearchHub from "./pages/dashboard/AiResearchHub";
+import AirdropRadar from "./pages/dashboard/AirdropRadar";
+import WalletTracker from "./pages/dashboard/WalletTracker";
+import TokenAnalyzer from "./pages/dashboard/TokenAnalyzer";
+import DexScanner from "./pages/dashboard/DexScanner";
+import SavedProjects from "./pages/dashboard/SavedProjects";
+import Settings from "./pages/dashboard/Settings";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +30,17 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/dashboard" element={<Navigate to="/home" />} />
+            <Route path="/dashboard" element={<Navigate to="/dashboard/overview" />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="overview" element={<Overview />} />
+              <Route path="ai-research-hub" element={<AiResearchHub />} />
+              <Route path="airdrop-radar" element={<AirdropRadar />} />
+              <Route path="wallet-tracker" element={<WalletTracker />} />
+              <Route path="token-analyzer" element={<TokenAnalyzer />} />
+              <Route path="dex-scanner" element={<DexScanner />} />
+              <Route path="saved-projects" element={<SavedProjects />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
