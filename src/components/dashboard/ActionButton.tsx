@@ -31,7 +31,7 @@ const ActionButton = ({
     outline: "bg-transparent border-2 border-purple-500/50 hover:border-purple-500 text-purple-300",
   };
 
-  // Extract HTML button props, omitting those that cause type conflicts
+  // Filter out props that cause conflicts between HTML button and Framer Motion
   const {
     onDrag,
     onDragEnd,
@@ -40,6 +40,9 @@ const ActionButton = ({
     onDragOver,
     onDragStart,
     onDrop,
+    onAnimationStart,
+    onAnimationEnd,
+    onAnimationIteration,
     ...htmlProps
   } = props;
 
