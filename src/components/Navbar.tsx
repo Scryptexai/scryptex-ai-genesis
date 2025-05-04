@@ -1,9 +1,18 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut, CreditCard } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +20,7 @@ const Navbar = () => {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
   const { scrollY } = useScroll();
+  const { user, isAuthenticated, logout } = useAuth();
 
   // Handle scroll direction to show/hide navbar
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -125,19 +135,63 @@ const Navbar = () => {
               </motion.a>
             ))}
           </div>
+          
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3"
           >
-            <Button
-              asChild
-              className="bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(168,85,247,0.3)]"
-            >
-              <Link to="/dashboard">Launch App</Link>
-            </Button>
+            {isAuthenticated && user ? (
+              <>
+                {/* Credits display */}
+                <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-purple-900/20 rounded-full">
+                  <CreditCard size={14} className="text-purple-400" />
+                  <span className="text-xs font-medium text-purple-300">{user.credits} TEX</span>
+                </div>
+                
+                {/* User dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-10 w-10 rounded-full" size="icon">
+                      <Avatar>
+                        <AvatarFallback className="bg-purple-900 text-white">
+                          {user.name.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56 bg-[#1A1F2C] border-purple-900/30 text-white" align="end">
+                    <DropdownMenuLabel>
+                      <div>
+                        <p className="font-medium">Welcome, {user.name}</p>
+                        <p className="text-xs text-gray-400">{user.email}</p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator className="bg-purple-900/20" />
+                    <DropdownMenuItem asChild>
+                      <Link to="/dashboard" className="cursor-pointer flex items-center">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logout} className="cursor-pointer text-red-400">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <Button
+                asChild
+                className="bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+              >
+                <Link to="/dashboard">Launch App</Link>
+              </Button>
+            )}
           </motion.div>
         </div>
 
@@ -174,6 +228,20 @@ const Navbar = () => {
               animate="animate"
               variants={navItemVariants}
             >
+              {isAuthenticated && user && (
+                <div className="flex items-center gap-3 px-2 py-3">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-purple-900 text-white">
+                      {user.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-medium text-sm">{user.name}</p>
+                    <p className="text-xs text-gray-400">{user.credits} TEX</p>
+                  </div>
+                </div>
+              )}
+              
               {navItems.map((item, index) => (
                 <motion.a
                   key={index}
@@ -187,12 +255,32 @@ const Navbar = () => {
                   {item.name}
                 </motion.a>
               ))}
-              <Button
-                asChild
-                className="w-full bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity"
-              >
-                <Link to="/dashboard">Launch App</Link>
-              </Button>
+              
+              {isAuthenticated ? (
+                <>
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:opacity-90 transition-opacity"
+                  >
+                    <Link to="/dashboard">Dashboard</Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full border-purple-900/30 text-red-400 hover:text-red-300 hover:bg-red-900/10"
+                    onClick={logout}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  asChild
+                  className="w-full bg-gradient-to-r from-scryptex-purple to-scryptex-lightpurple hover:opacity-90 transition-opacity"
+                >
+                  <Link to="/dashboard">Launch App</Link>
+                </Button>
+              )}
             </motion.div>
           </motion.div>
         )}

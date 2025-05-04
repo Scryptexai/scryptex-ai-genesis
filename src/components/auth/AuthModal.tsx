@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, Lock, User, Gift } from "lucide-react";
@@ -10,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 type AuthModalProps = {
   isOpen: boolean;
@@ -33,6 +33,7 @@ type SignupFormData = z.infer<typeof signupSchema>;
 const AuthModal = ({ isOpen, onClose, defaultView = "login" }: AuthModalProps) => {
   const [view, setView] = useState<"login" | "signup" | "success">(defaultView);
   const { toast } = useToast();
+  const { login, signup } = useAuth();
   
   // Generated referral code for display after signup
   const [generatedReferralCode, setGeneratedReferralCode] = useState("");
@@ -55,28 +56,29 @@ const AuthModal = ({ isOpen, onClose, defaultView = "login" }: AuthModalProps) =
     },
   });
 
-  const onLoginSubmit = (data: LoginFormData) => {
-    console.log("Login data:", data);
-    // In a real app, this would call an authentication API endpoint
-    setTimeout(() => {
-      toast({
-        title: "Login successful",
-        description: "Welcome back to Scryptex AI Platform!",
-      });
+  const onLoginSubmit = async (data: LoginFormData) => {
+    try {
+      await login(data.email, data.password);
       onClose();
-    }, 800);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
-  const onSignupSubmit = (data: SignupFormData) => {
-    console.log("Signup data:", data);
-    // Generate a random referral code (would normally be done by the backend)
-    const newReferralCode = `SCRX${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
-    setGeneratedReferralCode(newReferralCode);
-    
-    // In a real app, this would call an API endpoint to register the user
-    setTimeout(() => {
+  const onSignupSubmit = async (data: SignupFormData) => {
+    try {
+      const newReferralCode = await signup(
+        data.name, 
+        data.email, 
+        data.password, 
+        data.referralCode || undefined
+      );
+      
+      setGeneratedReferralCode(newReferralCode);
       setView("success");
-    }, 800);
+    } catch (error) {
+      console.error("Signup error:", error);
+    }
   };
 
   const handleCloseSuccess = () => {
