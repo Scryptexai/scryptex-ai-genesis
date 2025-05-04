@@ -1,126 +1,154 @@
 
 /**
- * Analyze Controllers
+ * Analyze Controller
  * 
- * Blueprint for AI analysis controller logic
- * NOT FOR EXECUTION - Structure representation only
+ * Handles project analysis API requests
+ * NOT FOR EXECUTION - Blueprint representation only
  */
 
+import { Request, Response } from 'express';
+// import { Project } from '../models/Project';
+// import { Analysis } from '../models/Analysis';
+// import { User } from '../models/User';
+
 /**
- * Base analyze function with common logic
- * @param {string} type - Type of analysis
- * @param {number} creditsRequired - Credits needed for analysis
- * @param {Object} req - Request object
- * @param {Object} res - Response object
+ * Analyze project
+ * POST /api/analyze
  */
-const analyzeBase = async (type, creditsRequired, req, res) => {
-  // In a real implementation:
-  // 1. Get user ID from auth middleware
-  // 2. Validate project data
-  // 3. Check if user has enough TEX tokens
-  // 4. Deduct tokens from balance
-  // 5. Run AI analysis based on the type
-  // 6. Save analysis results
-  // 7. Return analysis data
+const analyzeProject = async (req: Request, res: Response) => {
+  try {
+    const { projectName, projectURL, userToken } = req.body;
+    
+    // Check if user has enough tokens
+    // const user = await User.findById(req.user.id);
+    // if (user.credits < 10) {
+    //   return res.status(402).json({ message: "Insufficient credits" });
+    // }
+    
+    // Create or find project
+    // let project = await Project.findOne({ url: projectURL });
+    // if (!project) {
+    //   project = new Project({
+    //     name: projectName,
+    //     url: projectURL,
+    //     createdById: req.user.id,
+    //     createdAt: new Date(),
+    //     updatedAt: new Date()
+    //   });
+    //   await project.save();
+    // }
+    
+    // Generate analysis result (AI processing would happen here)
+    // const analysisResult = await generateAnalysis(projectURL);
+    
+    // Save analysis
+    // const analysis = new Analysis({
+    //   userId: req.user.id,
+    //   projectId: project.id,
+    //   createdAt: new Date(),
+    //   ...analysisResult
+    // });
+    // await analysis.save();
+    
+    // Deduct credits from user
+    // user.credits -= 10;
+    // user.projectsAnalyzed += 1;
+    // await user.save();
+    
+    // Mock implementation
+    res.status(200).json({
+      message: "Analysis completed successfully",
+      data: {
+        projectName,
+        analysisId: "mock-analysis-id",
+        creditsUsed: 10
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to analyze project" });
+  }
 };
 
 /**
- * Analyze project about section
- * @param {Object} req - Request with projectName, projectURL, and userToken
- * @param {Object} res - Response object
+ * Get analysis history
+ * GET /api/analyze/history
  */
-const analyzeAbout = async (req, res) => {
-  // Call base analyze function with "about" type and 15 credits
-  return analyzeBase("about", 15, req, res);
-};
-
-/**
- * Analyze project roadmap
- * @param {Object} req - Request with projectName, projectURL, and userToken
- * @param {Object} res - Response object
- */
-const analyzeRoadmap = async (req, res) => {
-  // Call base analyze function with "roadmap" type and 20 credits
-  return analyzeBase("roadmap", 20, req, res);
-};
-
-/**
- * Analyze project tokenomics
- * @param {Object} req - Request with projectName, projectURL, and userToken
- * @param {Object} res - Response object
- */
-const analyzeTokenomics = async (req, res) => {
-  // Call base analyze function with "tokenomics" type and 25 credits
-  return analyzeBase("tokenomics", 25, req, res);
-};
-
-/**
- * Analyze project team
- * @param {Object} req - Request with projectName, projectURL, and userToken
- * @param {Object} res - Response object
- */
-const analyzeTeam = async (req, res) => {
-  // Call base analyze function with "team" type and 30 credits
-  return analyzeBase("team", 30, req, res);
-};
-
-/**
- * Analyze project sentiment
- * @param {Object} req - Request with projectName, projectURL, and userToken
- * @param {Object} res - Response object
- */
-const analyzeSentiment = async (req, res) => {
-  // Call base analyze function with "sentiment" type and 35 credits
-  return analyzeBase("sentiment", 35, req, res);
-};
-
-/**
- * Get user's analysis history
- * @param {Object} req - Request with pagination and filter parameters
- * @param {Object} res - Response object
- */
-const getHistory = async (req, res) => {
-  // In a real implementation:
-  // 1. Get user ID from auth middleware
-  // 2. Validate query parameters
-  // 3. Fetch analysis history from database with pagination and filters
-  // 4. Format analysis data
-  // 5. Return analyses with pagination info
+const getAnalysisHistory = async (req: Request, res: Response) => {
+  try {
+    // const analyses = await Analysis.find({ userId: req.user.id })
+    //   .sort({ createdAt: -1 })
+    //   .populate('projectId');
+    
+    // Mock implementation
+    res.status(200).json({
+      message: "Fetched analysis history",
+      data: [
+        { id: "1", projectName: "Celestia", date: new Date(), score: 82 },
+        { id: "2", projectName: "Arbitrum", date: new Date(), score: 88 }
+      ]
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch analysis history" });
+  }
 };
 
 /**
  * Get top analyzed projects
- * @param {Object} req - Request with limit and period parameters
- * @param {Object} res - Response object
+ * GET /api/analyze/top
  */
-const getTop = async (req, res) => {
-  // In a real implementation:
-  // 1. Validate query parameters
-  // 2. Fetch top projects based on analysis count for the specified period
-  // 3. Format project data with metrics
-  // 4. Return project list
+const getTopAnalyzedProjects = async (req: Request, res: Response) => {
+  try {
+    // const projects = await Project.find()
+    //   .sort({ analysisCount: -1, savedCount: -1 })
+    //   .limit(5);
+    
+    // Mock implementation
+    res.status(200).json({
+      message: "Fetched top analyzed projects",
+      data: [
+        { id: "1", name: "Ethereum", category: "Layer 1", score: 95 },
+        { id: "2", name: "Arbitrum", category: "Layer 2", score: 88 }
+      ]
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch top projects" });
+  }
 };
 
 /**
- * Get latest analyzed projects
- * @param {Object} req - Request with limit parameter
- * @param {Object} res - Response object
+ * Get analysis result by ID
+ * GET /api/analyze/:id
  */
-const getLatest = async (req, res) => {
-  // In a real implementation:
-  // 1. Validate query parameters
-  // 2. Fetch most recently analyzed projects
-  // 3. Format project data with metrics
-  // 4. Return project list
+const getAnalysisById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    
+    // Check if user has access to this analysis
+    // const analysis = await Analysis.findById(id);
+    // if (!analysis) {
+    //   return res.status(404).json({ message: "Analysis not found" });
+    // }
+    // if (analysis.userId.toString() !== req.user.id) {
+    //   return res.status(403).json({ message: "Unauthorized" });
+    // }
+    
+    // Mock implementation
+    res.status(200).json({
+      message: "Fetched analysis details",
+      data: {
+        id,
+        projectName: "Mock Project",
+        // Full analysis results would be here
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch analysis" });
+  }
 };
 
 export {
-  analyzeAbout,
-  analyzeRoadmap,
-  analyzeTokenomics,
-  analyzeTeam,
-  analyzeSentiment,
-  getHistory,
-  getTop,
-  getLatest
+  analyzeProject,
+  getAnalysisHistory,
+  getTopAnalyzedProjects,
+  getAnalysisById
 };

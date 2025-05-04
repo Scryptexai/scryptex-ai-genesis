@@ -1,22 +1,14 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Chart, Users, Bookmark, Sparkles } from "lucide-react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
+import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
+import StatsWidget from "@/components/dashboard/StatsWidget";
+import ActivityChart from "@/components/dashboard/ActivityChart";
 import ActionButton from "@/components/dashboard/ActionButton";
-import { 
-  ChevronRight, 
-  ArrowUpRight,
-  ArrowDownRight,
-  Search,
-  Sparkles,
-  LineChart,
-  Scan
-} from "lucide-react";
 
 const Overview = () => {
-  const [loading, setLoading] = useState(false);
-  const [welcomeMessage, setWelcomeMessage] = useState("Welcome back, Alex");
-  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,26 +29,7 @@ const Overview = () => {
     }
   };
 
-  // Simulate loading action
-  const handleAction = () => {
-    setLoading(true);
-    setTimeout(() => setLoading(false), 1500);
-  };
-
-  // Time-based greeting
-  useEffect(() => {
-    const hours = new Date().getHours();
-    const name = "Alex"; // Would come from auth in a real app
-    
-    let greeting;
-    if (hours < 12) greeting = "Good morning";
-    else if (hours < 18) greeting = "Good afternoon";
-    else greeting = "Good evening";
-    
-    setWelcomeMessage(`${greeting}, ${name}`);
-  }, []);
-
-  // Trending projects data
+  // Trending projects data (kept from original)
   const trendingProjects = [
     { 
       name: "Celestia", 
@@ -97,27 +70,45 @@ const Overview = () => {
     >
       {/* Welcome Banner */}
       <motion.div variants={itemVariants}>
-        <DashboardCard className="bg-gradient-to-r from-purple-900/40 to-indigo-900/40">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white">{welcomeMessage}</h1>
-              <p className="text-gray-300 mt-1">Let's decode today's crypto landscape</p>
-            </div>
-            <motion.div 
-              className="h-16 w-16 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 flex items-center justify-center"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ repeat: Infinity, duration: 3 }}
-            >
-              <span className="text-2xl">🧠</span>
-            </motion.div>
-          </div>
-        </DashboardCard>
+        <WelcomeBanner />
+      </motion.div>
+
+      {/* Stats Widgets */}
+      <motion.div variants={itemVariants}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <StatsWidget 
+            title="Total Projects Analyzed" 
+            value={356} 
+            trend="up" 
+            trendValue="+24% this month" 
+            icon={<Chart size={24} />}
+          />
+          <StatsWidget 
+            title="Most Active Users" 
+            value={42} 
+            trend="up" 
+            trendValue="+7 new today" 
+            icon={<Users size={24} />}
+          />
+          <StatsWidget 
+            title="Projects Saved" 
+            value={189} 
+            trend="neutral" 
+            trendValue="Across 38 users" 
+            icon={<Bookmark size={24} />}
+          />
+        </div>
       </motion.div>
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* AI Insights Card */}
+        {/* Activity Chart */}
         <motion.div variants={itemVariants} className="md:col-span-2">
+          <ActivityChart />
+        </motion.div>
+
+        {/* AI Insights Card */}
+        <motion.div variants={itemVariants}>
           <DashboardCard title="Your AI Insights">
             <div className="border-l-4 border-purple-500 pl-4 py-1">
               <p className="text-gray-300 leading-relaxed">
@@ -126,48 +117,15 @@ const Overview = () => {
                 Consider moving some assets to Arbitrum ecosystem based on recent volume trends.
               </p>
             </div>
-            <div className="mt-6 flex justify-between items-center">
+            <div className="mt-4 flex justify-between items-center">
               <span className="text-xs text-purple-300">Updated 17 minutes ago</span>
-              <button className="text-purple-400 hover:text-purple-300 flex items-center gap-1 text-sm">
-                Full Analysis 
-                <ChevronRight size={16} />
-              </button>
+              <motion.button 
+                className="text-purple-400 hover:text-purple-300 flex items-center gap-1 text-sm"
+                whileHover={{ x: 5 }}
+              >
+                Full Analysis →
+              </motion.button>
             </div>
-          </DashboardCard>
-        </motion.div>
-
-        {/* Airdrop Radar Preview Card */}
-        <motion.div variants={itemVariants}>
-          <DashboardCard title="Airdrop Radar">
-            <div className="h-40 relative flex items-center justify-center">
-              {/* Radar animation circles */}
-              {[1, 2, 3].map((i) => (
-                <motion.div 
-                  key={i}
-                  className="absolute rounded-full border border-purple-500/30"
-                  style={{ width: `${i * 25}%`, height: `${i * 25}%` }}
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.1, 0.3, 0.1]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    delay: i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
-              
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-300">12</div>
-                <div className="text-sm text-gray-400">New Opportunities</div>
-              </div>
-            </div>
-            
-            <button className="w-full mt-2 text-center text-purple-400 hover:text-purple-300 text-sm py-2">
-              View All Airdrops
-            </button>
           </DashboardCard>
         </motion.div>
       </div>
@@ -175,12 +133,12 @@ const Overview = () => {
       {/* Trending Projects */}
       <motion.div variants={itemVariants}>
         <DashboardCard title="Trending Projects">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {trendingProjects.map((project, index) => (
               <motion.div 
                 key={index}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-purple-900/20 transition-colors"
-                whileHover={{ x: 4 }}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-purple-900/20 transition-colors cursor-pointer"
+                whileHover={{ x: 4, backgroundColor: "rgba(147, 51, 234, 0.2)" }}
               >
                 {/* Logo */}
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
@@ -196,9 +154,9 @@ const Overview = () => {
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{project.name}</span>
                     {project.trend === 'up' ? (
-                      <ArrowUpRight size={16} className="text-green-400" />
+                      <span className="text-xs bg-green-900/30 text-green-400 px-2 py-0.5 rounded-full">Rising</span>
                     ) : (
-                      <ArrowDownRight size={16} className="text-red-400" />
+                      <span className="text-xs bg-red-900/30 text-red-400 px-2 py-0.5 rounded-full">Falling</span>
                     )}
                   </div>
                   <p className="text-xs text-gray-400 mt-1">{project.note}</p>
@@ -213,53 +171,32 @@ const Overview = () => {
                     {project.score}
                   </span>
                   <div className="w-full h-1 bg-gray-700 rounded-full mt-1">
-                    <div 
+                    <motion.div 
                       className={`h-full rounded-full ${
                         project.score > 85 ? 'bg-green-400' : 
                         project.score > 70 ? 'bg-yellow-400' : 'bg-red-400'
                       }`}
                       style={{ width: `${project.score}%` }}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${project.score}%` }}
+                      transition={{ duration: 1, delay: index * 0.2 }}
                     />
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+          
+          <div className="mt-4 flex justify-center">
+            <ActionButton 
+              icon={<Sparkles size={18} />} 
+              variant="outline"
+              className="mt-2"
+            >
+              Explore More Projects
+            </ActionButton>
+          </div>
         </DashboardCard>
-      </motion.div>
-
-      {/* Quick Actions */}
-      <motion.div variants={itemVariants}>
-        <h2 className="text-lg font-medium mb-4 text-white/90">Quick Actions</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <ActionButton 
-            icon={<Search size={18} />} 
-            variant="primary" 
-            onClick={handleAction}
-            loading={loading}
-            className="h-16"
-          >
-            Run Wallet Analysis
-          </ActionButton>
-          
-          <ActionButton 
-            icon={<Sparkles size={18} />} 
-            variant="secondary"
-            onClick={handleAction}
-            className="h-16"
-          >
-            Check Airdrop Eligibility
-          </ActionButton>
-          
-          <ActionButton 
-            icon={<Scan size={18} />} 
-            variant="outline"
-            onClick={handleAction}
-            className="h-16"
-          >
-            Launch DEX Scanner
-          </ActionButton>
-        </div>
       </motion.div>
     </motion.div>
   );

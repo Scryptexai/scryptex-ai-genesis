@@ -10,8 +10,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Overview from "./pages/dashboard/Overview";
-import AiResearchHub from "./pages/dashboard/AiResearchHub";
-import AirdropRadar from "./pages/dashboard/AirdropRadar";
+import AnalyzeAI from "./pages/dashboard/AnalyzeAI";
+import AirdropUpdate from "./pages/dashboard/AirdropUpdate";
 import WalletTracker from "./pages/dashboard/WalletTracker";
 import TokenAnalyzer from "./pages/dashboard/TokenAnalyzer";
 import DexScanner from "./pages/dashboard/DexScanner";
@@ -34,8 +34,8 @@ const App = () => (
             <Route path="/dashboard" element={<Navigate to="/dashboard/overview" />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="overview" element={<Overview />} />
-              <Route path="ai-research-hub" element={<AiResearchHub />} />
-              <Route path="airdrop-radar" element={<AirdropRadar />} />
+              <Route path="analyze-ai" element={<AnalyzeAI />} />
+              <Route path="airdrop-update" element={<AirdropUpdate />} />
               <Route path="wallet-tracker" element={<WalletTracker />} />
               <Route path="token-analyzer" element={<TokenAnalyzer />} />
               <Route path="dex-scanner" element={<DexScanner />} />

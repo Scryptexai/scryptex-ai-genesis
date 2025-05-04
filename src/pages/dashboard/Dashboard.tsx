@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
-import BackgroundAnimation from "@/components/dashboard/BackgroundAnimation";
+import NetworkBackground from "@/components/dashboard/NetworkBackground";
 import AuthModal from "@/components/auth/AuthModal";
 import TokenCreditDisplay from "@/components/credits/TokenCreditDisplay";
 
@@ -81,7 +81,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-[#0D0A2E] text-white relative overflow-hidden">
       {/* Background Animation */}
-      <BackgroundAnimation />
+      <NetworkBackground />
       
       <div className="flex relative z-10">
         {/* Sidebar */}
