@@ -6,7 +6,7 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-import { Router } from 'express';
+// import { Router } from 'express';
 import { 
   getAllAirdrops,
   getAirdropsByStatus,
@@ -15,16 +15,16 @@ import {
 } from '../controllers/airdropController';
 // import { authenticate } from '../middleware/auth';
 
-const router = Router();
+// const router = Router();
 
 // Public routes
-router.get('/', getAllAirdrops);
-router.get('/status/:status', getAirdropsByStatus);
+// router.get('/', getAllAirdrops);
+// router.get('/status/:status', getAirdropsByStatus);
 
 // Protected routes - would require authentication
 // router.use(authenticate);
-router.post('/', submitAirdrop);
-router.post('/:id/save', saveAirdrop);
+// router.post('/', submitAirdrop);
+// router.post('/:id/save', saveAirdrop);
 
 // Export the router 
 // export default router;

@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Chart, Users, Bookmark, Sparkles } from "lucide-react";
+import { BarChart, Users, Bookmark, Sparkles } from "lucide-react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 import StatsWidget from "@/components/dashboard/StatsWidget";
@@ -81,7 +80,7 @@ const Overview = () => {
             value={356} 
             trend="up" 
             trendValue="+24% this month" 
-            icon={<Chart size={24} />}
+            icon={<BarChart size={24} />}
           />
           <StatsWidget 
             title="Most Active Users" 

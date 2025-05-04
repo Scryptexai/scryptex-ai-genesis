@@ -19,6 +19,7 @@ const WelcomeBanner = () => {
     visible: { opacity: 1, y: 0 }
   };
   
+  // Fixed icon animation variants - replaced string with proper enum value
   const iconVariants = {
     animate: {
       scale: [1, 1.2, 1],
@@ -26,7 +27,7 @@ const WelcomeBanner = () => {
       transition: {
         duration: 3,
         repeat: Infinity,
-        repeatType: 'reverse'
+        repeatType: "mirror"
       }
     }
   };
@@ -58,7 +59,7 @@ const WelcomeBanner = () => {
             transition={{
               duration: 10 + i * 2,
               repeat: Infinity,
-              repeatType: "reverse",
+              repeatType: "mirror",
               ease: "easeInOut",
             }}
           />

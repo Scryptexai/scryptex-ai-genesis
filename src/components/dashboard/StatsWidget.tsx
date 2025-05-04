@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DashboardCard from '@/components/dashboard/DashboardCard';
-import { Chart } from 'lucide-react';
+import { BarChart } from 'lucide-react';
 
 interface StatsWidgetProps {
   title: string;
@@ -54,7 +54,7 @@ const StatsWidget = ({
       <DashboardCard className="h-full">
         <div className="flex items-center gap-4">
           <div className="rounded-lg bg-purple-900/30 p-3 text-purple-400">
-            {icon || <Chart size={24} />}
+            {icon || <BarChart size={24} />}
           </div>
           <div>
             <h3 className="text-sm font-medium text-gray-400">{title}</h3>
