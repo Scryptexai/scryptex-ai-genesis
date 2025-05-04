@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +16,7 @@ import TokenAnalyzer from "./pages/dashboard/TokenAnalyzer";
 import DexScanner from "./pages/dashboard/DexScanner";
 import SavedProjects from "./pages/dashboard/SavedProjects";
 import Settings from "./pages/dashboard/Settings";
+import Referrals from "./pages/dashboard/Referrals";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +40,7 @@ const App = () => (
               <Route path="dex-scanner" element={<DexScanner />} />
               <Route path="saved-projects" element={<SavedProjects />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="referrals" element={<Referrals />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

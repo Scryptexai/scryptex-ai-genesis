@@ -1,43 +1,49 @@
 
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 interface DashboardCardProps {
+  children: ReactNode;
   title?: string;
   className?: string;
-  children: ReactNode;
-  fullWidth?: boolean;
-  padding?: "none" | "small" | "normal" | "large";
+  glowEffect?: boolean;
+  hoverEffect?: boolean;
 }
 
-const DashboardCard = ({ 
-  title, 
-  className = "", 
-  children, 
-  fullWidth = false,
-  padding = "normal" 
+const DashboardCard = ({
+  children,
+  title,
+  className = "",
+  glowEffect = false,
+  hoverEffect = true
 }: DashboardCardProps) => {
-  
-  const paddingClasses = {
-    none: "p-0",
-    small: "p-3",
-    normal: "p-5",
-    large: "p-6",
-  };
-  
   return (
     <motion.div
-      className={`bg-[#1A1F2C]/80 backdrop-blur-sm rounded-xl border border-purple-900/30 
-                ${paddingClasses[padding]} ${fullWidth ? "w-full" : ""} 
-                shadow-[0_0_15px_rgba(131,56,236,0.1)] ${className}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ boxShadow: "0 0 20px rgba(131, 56, 236, 0.2)" }}
+      className={`relative bg-[#1A1F2C]/80 backdrop-blur-md rounded-xl border border-purple-900/30 p-5 ${className} overflow-hidden`}
+      whileHover={hoverEffect ? { y: -4, transition: { duration: 0.2 } } : {}}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      {title && (
-        <h2 className="text-lg font-medium mb-4 text-white/90">{title}</h2>
+      {/* Optional glass reflection effect */}
+      <div className="absolute -top-[500px] -left-[200px] w-[600px] h-[600px] bg-gradient-to-br from-white/5 to-transparent rounded-full opacity-20 blur-3xl pointer-events-none"></div>
+      
+      {/* Optional glow effect */}
+      {glowEffect && (
+        <motion.div 
+          className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-purple-600/20 via-transparent to-blue-600/20 z-[-1]"
+          animate={{ 
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        />
       )}
+
+      {title && (
+        <div className="mb-4 flex items-center">
+          <h3 className="text-lg font-medium text-white">{title}</h3>
+          <div className="ml-3 h-px bg-gradient-to-r from-purple-500/50 to-transparent flex-grow"></div>
+        </div>
+      )}
+
       {children}
     </motion.div>
   );
