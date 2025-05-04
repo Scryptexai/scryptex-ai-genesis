@@ -6,96 +6,61 @@
  * NOT FOR EXECUTION - Blueprint representation only
  */
 
-import { Request, Response } from 'express';
-// import { User } from '../models/User';
-// import { CreditTransaction } from '../models/Credit';
+// Mock types to replace express dependency
+type Request = {
+  params: Record<string, string>;
+  body: any;
+  user?: { id: string };
+};
+
+type Response = {
+  status: (code: number) => {
+    json: (data: any) => void;
+  };
+};
 
 /**
- * Get user's referral info
- * GET /api/referrals
+ * Get referral information for logged in user
+ * GET /api/referral
  */
 const getReferralInfo = async (req: Request, res: Response) => {
   try {
-    // const userId = req.user.id;
-    // const user = await User.findById(userId);
-    
-    // const referredUsers = await User.find({ referredBy: userId })
-    //   .select('name email createdAt');
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Referral information retrieved",
+    res.status(200).json({ 
+      message: "Referral info retrieved",
       data: {
         referralCode: "SCRX1234",
-        referralCount: 5,
-        referralPoints: 250,
-        referredUsers: [
-          { name: "User 1", date: new Date(), points: 50 },
-          { name: "User 2", date: new Date(), points: 50 }
-        ]
+        referrals: [
+          { email: "user1@example.com", date: new Date(), status: "active" },
+          { email: "user2@example.com", date: new Date(), status: "pending" }
+        ],
+        totalPoints: 150,
+        totalReferrals: 2
       }
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch referral information" });
+    res.status(500).json({ message: "Failed to fetch referral info" });
   }
 };
 
 /**
- * Apply referral code
- * POST /api/referrals/apply
+ * Apply a referral code
+ * POST /api/referral/apply
  */
 const applyReferralCode = async (req: Request, res: Response) => {
   try {
-    const { code } = req.body;
-    
-    // Validate referral code
-    // const referrer = await User.findOne({ referralCode: code });
-    // if (!referrer) {
-    //   return res.status(404).json({ message: "Invalid referral code" });
-    // }
-    
-    // Check if user has already used a referral code
-    // const userId = req.user.id;
-    // const user = await User.findById(userId);
-    // if (user.referredBy) {
-    //   return res.status(400).json({ message: "Referral code already used" });
-    // }
-    
-    // Apply referral code
-    // user.referredBy = referrer._id;
-    // await user.save();
-    
-    // Award points to referrer
-    // referrer.points += 50;
-    // referrer.referrals += 1;
-    // await referrer.save();
-    
-    // Create credit transactions
-    // Create referral bonus transaction for referrer
-    // const referrerTransaction = new CreditTransaction({
-    //   userId: referrer._id,
-    //   type: "credit",
-    //   amount: 10,
-    //   purpose: "referral_bonus",
-    //   timestamp: new Date()
-    // });
-    // await referrerTransaction.save();
-    
-    // Create signup bonus transaction for user
-    // const userTransaction = new CreditTransaction({
-    //   userId: userId,
-    //   type: "credit",
-    //   amount: 5,
-    //   purpose: "signup_bonus",
-    //   timestamp: new Date()
-    // });
-    // await userTransaction.save();
+    const { referralCode } = req.body;
     
     // Mock implementation
-    res.status(200).json({
+    if (!referralCode) {
+      return res.status(400).json({ message: "Referral code is required" });
+    }
+    
+    res.status(200).json({ 
       message: "Referral code applied successfully",
       data: {
-        bonusAwarded: 5
+        pointsAdded: 50,
+        newTotalPoints: 100
       }
     });
   } catch (error) {
@@ -105,25 +70,18 @@ const applyReferralCode = async (req: Request, res: Response) => {
 
 /**
  * Generate new referral code
- * POST /api/referrals/generate
+ * POST /api/referral/generate
  */
 const generateReferralCode = async (req: Request, res: Response) => {
   try {
-    // const userId = req.user.id;
-    
-    // Generate unique code
-    // const prefix = "SCRX";
-    // const randomDigits = Math.floor(1000 + Math.random() * 9000);
-    // const code = `${prefix}${randomDigits}`;
-    
-    // Save to user
-    // await User.findByIdAndUpdate(userId, { referralCode: code });
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Referral code generated",
+    const newCode = "SCRX" + Math.floor(1000 + Math.random() * 9000).toString();
+    
+    res.status(200).json({ 
+      message: "New referral code generated",
       data: {
-        code: "SCRX1234"
+        referralCode: newCode,
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days from now
       }
     });
   } catch (error) {

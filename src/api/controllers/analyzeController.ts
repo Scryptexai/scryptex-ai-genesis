@@ -6,62 +6,48 @@
  * NOT FOR EXECUTION - Blueprint representation only
  */
 
-import { Request, Response } from 'express';
-// import { Project } from '../models/Project';
-// import { Analysis } from '../models/Analysis';
-// import { User } from '../models/User';
+// Mock types to replace express dependency
+type Request = {
+  params: Record<string, string>;
+  body: any;
+  user?: { id: string };
+  query?: Record<string, string>;
+};
+
+type Response = {
+  status: (code: number) => {
+    json: (data: any) => void;
+  };
+};
 
 /**
- * Analyze project
+ * Analyze a new project
  * POST /api/analyze
  */
 const analyzeProject = async (req: Request, res: Response) => {
   try {
-    const { projectName, projectURL, userToken } = req.body;
-    
-    // Check if user has enough tokens
-    // const user = await User.findById(req.user.id);
-    // if (user.credits < 10) {
-    //   return res.status(402).json({ message: "Insufficient credits" });
-    // }
-    
-    // Create or find project
-    // let project = await Project.findOne({ url: projectURL });
-    // if (!project) {
-    //   project = new Project({
-    //     name: projectName,
-    //     url: projectURL,
-    //     createdById: req.user.id,
-    //     createdAt: new Date(),
-    //     updatedAt: new Date()
-    //   });
-    //   await project.save();
-    // }
-    
-    // Generate analysis result (AI processing would happen here)
-    // const analysisResult = await generateAnalysis(projectURL);
-    
-    // Save analysis
-    // const analysis = new Analysis({
-    //   userId: req.user.id,
-    //   projectId: project.id,
-    //   createdAt: new Date(),
-    //   ...analysisResult
-    // });
-    // await analysis.save();
-    
-    // Deduct credits from user
-    // user.credits -= 10;
-    // user.projectsAnalyzed += 1;
-    // await user.save();
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Analysis completed successfully",
+    res.status(200).json({ 
+      message: "Project analyzed successfully",
       data: {
-        projectName,
-        analysisId: "mock-analysis-id",
-        creditsUsed: 10
+        projectId: "proj_123",
+        score: 85,
+        results: {
+          about: "This project aims to...",
+          roadmap: ["Q1 2025: Launch", "Q2 2025: Expansion"],
+          team: "Experienced team with background in...",
+          tokenomics: { 
+            total: "100M",
+            distribution: {
+              team: "15%",
+              public: "40%",
+              ecosystem: "25%",
+              treasury: "20%"
+            }
+          },
+          risk: "Medium",
+          sentiment: "Positive"
+        }
       }
     });
   } catch (error) {
@@ -70,21 +56,27 @@ const analyzeProject = async (req: Request, res: Response) => {
 };
 
 /**
- * Get analysis history
+ * Get analysis history for user
  * GET /api/analyze/history
  */
 const getAnalysisHistory = async (req: Request, res: Response) => {
   try {
-    // const analyses = await Analysis.find({ userId: req.user.id })
-    //   .sort({ createdAt: -1 })
-    //   .populate('projectId');
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Fetched analysis history",
+    res.status(200).json({ 
+      message: "Analysis history retrieved",
       data: [
-        { id: "1", projectName: "Celestia", date: new Date(), score: 82 },
-        { id: "2", projectName: "Arbitrum", date: new Date(), score: 88 }
+        {
+          id: "anal_123",
+          projectName: "CryptoProject",
+          date: new Date(),
+          score: 85
+        },
+        {
+          id: "anal_124",
+          projectName: "BlockchainApp",
+          date: new Date(),
+          score: 72
+        }
       ]
     });
   } catch (error) {
@@ -98,47 +90,61 @@ const getAnalysisHistory = async (req: Request, res: Response) => {
  */
 const getTopAnalyzedProjects = async (req: Request, res: Response) => {
   try {
-    // const projects = await Project.find()
-    //   .sort({ analysisCount: -1, savedCount: -1 })
-    //   .limit(5);
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Fetched top analyzed projects",
+    res.status(200).json({ 
+      message: "Top analyzed projects retrieved",
       data: [
-        { id: "1", name: "Ethereum", category: "Layer 1", score: 95 },
-        { id: "2", name: "Arbitrum", category: "Layer 2", score: 88 }
+        {
+          id: "proj_123",
+          name: "Ethereum",
+          score: 95,
+          category: "Layer 1",
+          analyzeCount: 1248
+        },
+        {
+          id: "proj_124",
+          name: "Arbitrum",
+          score: 88,
+          category: "Layer 2",
+          analyzeCount: 942
+        }
       ]
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch top projects" });
+    res.status(500).json({ message: "Failed to fetch top analyzed projects" });
   }
 };
 
 /**
- * Get analysis result by ID
+ * Get specific analysis by ID
  * GET /api/analyze/:id
  */
 const getAnalysisById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     
-    // Check if user has access to this analysis
-    // const analysis = await Analysis.findById(id);
-    // if (!analysis) {
-    //   return res.status(404).json({ message: "Analysis not found" });
-    // }
-    // if (analysis.userId.toString() !== req.user.id) {
-    //   return res.status(403).json({ message: "Unauthorized" });
-    // }
-    
     // Mock implementation
-    res.status(200).json({
-      message: "Fetched analysis details",
+    res.status(200).json({ 
+      message: `Analysis ${id} retrieved successfully`,
       data: {
         id,
-        projectName: "Mock Project",
-        // Full analysis results would be here
+        projectName: "CryptoProject",
+        date: new Date(),
+        score: 85,
+        results: {
+          about: "This project aims to...",
+          roadmap: ["Q1 2025: Launch", "Q2 2025: Expansion"],
+          team: "Experienced team with background in...",
+          tokenomics: { 
+            total: "100M",
+            distribution: {
+              team: "15%",
+              public: "40%",
+              ecosystem: "25%",
+              treasury: "20%"
+            }
+          }
+        }
       }
     });
   } catch (error) {

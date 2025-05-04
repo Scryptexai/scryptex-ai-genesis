@@ -19,7 +19,7 @@ const WelcomeBanner = () => {
     visible: { opacity: 1, y: 0 }
   };
   
-  // Fixed icon animation variants - replaced string with proper enum value
+  // Fixed icon animation variants - using correct enum value for repeatType
   const iconVariants = {
     animate: {
       scale: [1, 1.2, 1],

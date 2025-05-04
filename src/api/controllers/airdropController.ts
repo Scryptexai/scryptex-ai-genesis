@@ -6,8 +6,18 @@
  * NOT FOR EXECUTION - Blueprint representation only
  */
 
-import { Request, Response } from 'express';
-// import { Airdrop } from '../models/Airdrop';
+// Mock types to replace express dependency
+type Request = {
+  params: Record<string, string>;
+  body: any;
+  user?: { id: string };
+};
+
+type Response = {
+  status: (code: number) => {
+    json: (data: any) => void;
+  };
+};
 
 /**
  * Get all airdrops

@@ -6,31 +6,42 @@
  * NOT FOR EXECUTION - Structure representation only
  */
 
-// import { Router } from 'express';
+// Using import type to avoid requiring the express module at runtime
+import type { Router } from 'express';
 import { 
   analyzeProject, 
   getAnalysisHistory, 
   getTopAnalyzedProjects, 
   getAnalysisById
 } from '../controllers/analyzeController';
-// import { authenticate } from '../middleware/auth';
 
-// const router = Router();
+// Mock router setup - this code is never executed
+/*
+const router: Router = Router();
 
 // All routes below would use authentication middleware
-// router.use(authenticate);
+router.use(authenticate);
 
 // Analyze a new project
-// router.post('/', analyzeProject);
+router.post('/', analyzeProject);
 
 // Get analysis history for user
-// router.get('/history', getAnalysisHistory);
+router.get('/history', getAnalysisHistory);
 
 // Get top analyzed projects
-// router.get('/top', getTopAnalyzedProjects);
+router.get('/top', getTopAnalyzedProjects);
 
 // Get specific analysis by ID
-// router.get('/:id', getAnalysisById);
+router.get('/:id', getAnalysisById);
 
 // Export the router 
-// export default router;
+export default router;
+*/
+
+// Export the controllers to document the API structure
+export {
+  analyzeProject, 
+  getAnalysisHistory, 
+  getTopAnalyzedProjects, 
+  getAnalysisById
+};
