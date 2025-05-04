@@ -18,6 +18,7 @@ const ActionButton = ({
   variant = "primary",
   className = "",
   loading = false,
+  type,
   ...props
 }: ActionButtonProps) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -30,6 +31,18 @@ const ActionButton = ({
     outline: "bg-transparent border-2 border-purple-500/50 hover:border-purple-500 text-purple-300",
   };
 
+  // Extract HTML button props, omitting those that cause type conflicts
+  const {
+    onDrag,
+    onDragEnd,
+    onDragEnter,
+    onDragLeave,
+    onDragOver,
+    onDragStart,
+    onDrop,
+    ...htmlProps
+  } = props;
+
   return (
     <motion.button
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
@@ -39,7 +52,8 @@ const ActionButton = ({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       disabled={loading}
-      {...props}
+      type={type}
+      {...htmlProps}
     >
       {loading ? (
         <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
