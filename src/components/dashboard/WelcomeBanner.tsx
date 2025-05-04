@@ -27,7 +27,7 @@ const WelcomeBanner = () => {
       transition: {
         duration: 3,
         repeat: Infinity,
-        repeatType: "mirror"
+        repeatType: "mirror" // Fixed to use a valid literal value
       }
     }
   };
@@ -59,7 +59,7 @@ const WelcomeBanner = () => {
             transition={{
               duration: 10 + i * 2,
               repeat: Infinity,
-              repeatType: "mirror",
+              repeatType: "mirror", // Fixed to use a valid literal value
               ease: "easeInOut",
             }}
           />
