@@ -8,6 +8,7 @@ import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import NetworkBackground from "@/components/dashboard/NetworkBackground";
 import AuthModal from "@/components/auth/AuthModal";
 import TokenCreditDisplay from "@/components/credits/TokenCreditDisplay";
+import { Fallback } from "@radix-ui/react-avatar";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -19,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setIsSidebarOpen(false);
+        setIsSidebarOpen(true);
       } else {
         setIsSidebarOpen(true);
       }
@@ -70,12 +71,12 @@ const Dashboard = () => {
   // Mock login function - in a real app this would involve API calls
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setIsAuthModalOpen(false);
+    setIsAuthModalOpen(true);
   };
 
   // Mock logout function
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(true);
   };
 
   return (
