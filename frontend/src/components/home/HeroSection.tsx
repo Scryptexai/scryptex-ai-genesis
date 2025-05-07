@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Wallet, Gift, Database, PieChart } from "lucide-react";
 import Lottie from 'react-lottie-player';
-import aiCharacterAnimation from './aiCharacterAnimation.json';
+import web3analyst from '@components/animations/web3-analyst.json';
 
 const ImprovedHeroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
