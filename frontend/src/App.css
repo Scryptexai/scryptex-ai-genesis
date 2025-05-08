@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+@layer utilities {
+  bg-size-200 {
+  background-size: 200% 200%;
+  }
+  animate-gradient-x {
+  animation: gradient 15s ease infinite;
+  }
+  @keyframes gradient {
+  0% {
+  background-position: 0% 50%;
+  }
+  50% {
+  background-position: 100% 50%;
+   }
+  100% {
+  background-position: 0% 50%;
+  }
+     }
+   }

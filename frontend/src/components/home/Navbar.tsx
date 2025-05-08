@@ -78,7 +78,7 @@ const Navbar = () => {
     }),
     hover: {
       y: -2,
-      color: "#a855f7",
+      color: "#a85f7",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -107,7 +107,7 @@ const Navbar = () => {
     >
       <div className="container px-4 mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <img src="/logo.png" className="h-10 w-auto" alt="Scryptex Logo" />
+          <img src="/logo.png" className="h-20 w-25" alt="Scryptex Logo" />
         </Link>
 
         {/* Desktop Menu */}

@@ -3,10 +3,11 @@ import Navbar from "@/components/home/Navbar";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
-import AiBenefitsSection from "@/components/home/AiBenefitsSection";
+import AiBenefitsSection from "@/components/home/AiBenefitsSection"; 
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CtaSection from "@/components/home/CtaSection";
 import Footer from "@/components/home/Footer";
+import CryptoIcons from "@/components/home/CryptoIcons";
 import { useEffect } from "react";
 
 const Home = () => {
