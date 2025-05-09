@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scryptex Dashboard</title>
+  <link rel="stylesheet" href="dashboard-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container glow-container">
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+      <div class="flex items-center">
+        <img src="/api/placeholder/32/32" alt="Scryptex Logo" class="dashboard-logo">
+        <h1 class="text-lg font-bold ml-2">Scryptex Dashboard</h1>
+      </div>
+      <button class="btn btn-primary">Launch App</button>
+    </header>
+    
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <!-- Sidebar -->
+      <div class="dashboard-sidebar">
+        <div class="sidebar-icon active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="sidebar-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+            <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+          </svg>
+        </div>
+        <div class="sidebar-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="sidebar-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+          </svg>
+        </div>
+        <div class="sidebar-icon" style="margin-top: auto;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Main dashboard area -->
+      <div class="dashboard-main">
+        <div>
+          <h2 class="text-lg font-bold">
+            Airdrop Analysis
+            <span class="badge badge-purple">Powered by AI</span>
+          </h2>
+        </div>
+        
+        <!-- Top row - Score and Risk Assessment -->
+        <div class="two-column-grid">
+          <!-- Legitimacy Score -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title">Legitimacy Score</div>
+            </div>
+            
+            <div class="flex justify-center py-2">
+              <div class="legitimacy-score">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="45" stroke="#2d2d3d" stroke-width="10" fill="none" />
+                  <circle cx="60" cy="60" r="45" stroke="#8b5cf6" stroke-width="10" fill="none" class="score-circle" style="--score-percentage: 87;" />
+                </svg>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                  <div class="score-value">87</div>
+                  <div class="score-label">Legitimacy</div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-sm text-secondary mt-2">AI Verified</p>
+          </div>
+          
+          <!-- Risk Assessment -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title">Risk Assessment</div>
+            </div>
+            
+            <div>
+              <div class="mb-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Smart Contract Audit</span>
+                  <span>90%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+              
+              <div class="mb-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Tokenomics</span>
+                  <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+              </div>
+              
+              <div class="mb-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Community Engagement</span>
+                  <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+              
+              <div class="mb-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Risk Assessment</span>
+                  <span>70%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+              </div>
+              
+              <p class="text-xs text-muted mt-2">Analysis based on 240+ data points</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bottom row - Effort and Airdrops -->
+        <div class="two-column-grid">
+          <!-- Effort-to-Value -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title">Effort-to-Value Prediction</div>
+              <div class="badge badge-purple">AI Analysis</div>
+            </div>
+            
+            <div class="flex justify-between mt-2">
+              <div>
+                <div class="text-sm font-medium mb-1">Estimated Effort:</div>
+                <div class="text-base font-semibold">Medium</div>
+                <div class="text-xs text-muted">(2-3 hours)</div>
+              </div>
+              
+              <div class="text-right">
+                <div class="text-sm font-medium mb-1">Potential Value:</div>
+                <div class="text-base font-semibold text-purple-400">High</div>
+                <div class="text-xs text-purple-400">($50-$500)</div>
+              </div>
+            </div>
+            
+            <div class="mt-4">
+              <div class="text-xs font-medium mb-1">Required Tasks:</div>
+              <ul class="text-xs text-muted">
+                <li class="mb-1">• KYC Verification</li>
+                <li class="mb-1">• Social Media Tasks</li>
+                <li class="mb-1">• Testnet Interaction</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Live Airdrops -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <div class="card-title">AI-Curated Airdrops</div>
+              <a href="#" class="text-xs text-purple-400">View All</a>
+            </div>
+            
+            <div class="mt-2">
+              <!-- Airdrop Item 1 -->
+              <div class="airdrop-card">
+                <img src="/api/placeholder/32/32" class="airdrop-logo" alt="EtherFlow">
+                <div class="airdrop-info">
+                  <div class="airdrop-name">EtherFlow</div>
+                  <div class="airdrop-description">DeFi</div>
+                </div>
+                <div class="airdrop-score score-high">92</div>
+              </div>
+              
+              <!-- Airdrop Item 2 -->
+              <div class="airdrop-card">
+                <img src="/api/placeholder/32/32" class="airdrop-logo" alt="Nebula">
+                <div class="airdrop-info">
+                  <div class="airdrop-name">Nebula</div>
+                  <div class="airdrop-description">GameFi</div>
+                </div>
+                <div class="airdrop-score score-medium">78</div>
+              </div>
+              
+              <!-- Airdrop Item 3 -->
+              <div class="airdrop-card">
+                <img src="/api/placeholder/32/32" class="airdrop-logo" alt="ZKSync">
+                <div class="airdrop-info">
+                  <div class="airdrop-name">ZKSync</div>
+                  <div class="airdrop-description">L2 Protocol</div>
+                </div>
+                <div class="airdrop-score score-high">95</div>
+              </div>
+            </div>
+            
+            <div class="text-center mt-4">
+              <button class="btn btn-outline">Load More Airdrops</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Glow effect -->
+    <div class="glow-effect"></div>
+  </div>
+</body>
+</html>

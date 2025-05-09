@@ -2,7 +2,6 @@
 import React from 'react';
 import AnimatedBackground from './AnimatedBackground';
 import MetricCards from './MetricCards';
-import DashboardMockup from './DashboardMockup';
 import TokenIcons from './TokenIcons';
 import HeroContent from './HeroContent';
 
@@ -22,8 +21,8 @@ const HeroSection: React.FC = () => {
           </div>
           
           {/* Right side dashboard mockup */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center">
-            <DashboardMockup />
+          <div className="w-full lg:w-2/3 flex justify-center items-center">
+            <img src="/media/banners.png" alt="Hero Banner" className="h-auto max-w-full" />
           </div>
           
           {/* Floating token icons */}
