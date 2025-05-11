@@ -19,6 +19,7 @@ import DexScanner from "./pages/dashboard/DexScanner";
 import SavedProjects from "./pages/dashboard/SavedProjects";
 import Settings from "./pages/dashboard/Settings";
 import Referrals from "./pages/dashboard/Referrals";
+import TestPage from './pages/TestPage';
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/test" element={<TestPage />} />
               <Route path="/home" element={<Home />} />
               <Route path="/dashboard" element={<Navigate to="/dashboard/overview" />} />
               <Route path="/dashboard" element={<Dashboard />}>
